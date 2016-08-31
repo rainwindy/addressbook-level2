@@ -13,6 +13,10 @@ public class Address {
     public static final String ADDRESS_VALIDATION_REGEX = ".+";
 
     public final String value;
+    public final Block _block;
+    public final Street _street;
+    public final Unit _unit;
+    public final Postal _postal;
     private boolean isPrivate;
 
     /**
@@ -26,7 +30,16 @@ public class Address {
             throw new IllegalValueException(MESSAGE_ADDRESS_CONSTRAINTS);
         }
         this.value = address;
+        
+        String[] valueArray = value.split(",");
+        _block = new Block(valueArray[0]);
+        _street =  new Street(valueArray[1]);
+        _unit = new Unit(valueArray[2]);
+        _postal = new Postal(valueArray[3]);
+        
     }
+    
+    
 
     /**
      * Returns true if a given string is a valid person email.
