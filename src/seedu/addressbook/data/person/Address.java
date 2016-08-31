@@ -56,3 +56,22 @@ public class Address {
         return isPrivate;
     }
 }
+
+/*class Block{
+	private String blockName;
+	
+	public Block(){
+		getBlockName = "";
+	}
+}
+class Street{
+	private String streetName; 
+}
+class Postal{
+	private int postalNum;
+	
+}
+class Unit{
+	private String unitName;
+	
+}*/
