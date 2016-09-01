@@ -31,12 +31,13 @@ public class Main {
     private List<? extends ReadOnlyPerson> lastShownList = Collections.emptyList();
 
 
-    public static void main(String... launchArgs) {
+    public static void main(String... launchArgs) throws StorageOperationException {
         new Main().run(launchArgs);
     }
 
-    /** Runs the program until termination.  */
-    public void run(String[] launchArgs) {
+    /** Runs the program until termination.  
+     * @throws StorageOperationException */
+    public void run(String[] launchArgs) throws StorageOperationException {
         start(launchArgs);
         runCommandLoopUntilExitCommand();
         exit();
@@ -68,6 +69,9 @@ public class Main {
              */
             throw new RuntimeException(e);
         }
+       
+        	
+        
     }
 
     /** Prints the Goodbye message and exits. */
@@ -76,8 +80,16 @@ public class Main {
         System.exit(0);
     }
 
-    /** Reads the user command and executes it, until the user issues the exit command.  */
-    private void runCommandLoopUntilExitCommand() {
+    /** Reads the user command and executes it, until the user issues the exit command.  
+     * @throws StorageOperationException */
+    private void runCommandLoopUntilExitCommand() throws StorageOperationException {
+    	
+    	
+    	if(!storage.path.toFile().isFile()){
+    	
+    		throw new StorageOperationException( "File not found: "+storage.path);
+    	}	
+    	
         Command command;
         do {
             String userCommandText = ui.getUserCommand();
