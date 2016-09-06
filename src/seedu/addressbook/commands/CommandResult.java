@@ -30,6 +30,8 @@ public class CommandResult {
     	return feedbackToUser;
     	
     }
+    
+    
     /**
      * Returns list of persons relevant to the command command result, if any.
      */
