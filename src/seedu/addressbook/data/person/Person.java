@@ -5,101 +5,106 @@ import seedu.addressbook.data.tag.UniqueTagList;
 import java.util.Objects;
 
 /**
- * Represents a Person in the address book.
- * Guarantees: details are present and not null, field values are validated.
+ * Represents a Person in the address book. Guarantees: details are present and
+ * not null, field values are validated.
  */
 public class Person implements ReadOnlyPerson {
 
-    private Name name;
-    private Phone phone;
-    private Email email;
-    private Address address;
-    
-    private int sequenceNumber;
-    private static int nextSequenceNumber =1;
+	private static int INITIAL_SEQ_NUM = 1;
 
-    private final UniqueTagList tags;
-    /**
-     * Assumption: Every field must be present and not null.
-     */
-    public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
-        
-        this.sequenceNumber= nextSequenceNumber;
-        nextSequenceNumber++;
-    }
-    
-    public void setSequenceNumber(int sequenceNumber){
-    	this.sequenceNumber = sequenceNumber;
-    }
+	private Name name;
+	private Phone phone;
+	private Email email;
+	private Address address;
 
-    /**
-     * Copy constructor.
-     */
-    public Person(ReadOnlyPerson source) {
-        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags());
-    }
-    
-    public static int getNextSequenceNumber(){
-    	return nextSequenceNumber;
-    }
-    
-    public int getSequenceNumber(){
-    	return sequenceNumber;
-    }
-    
-    @Override
-    public Name getName() {
-        return name;
-    }
+	private int sequenceNumber;
+	private static int nextSequenceNumber = INITIAL_SEQ_NUM;
 
-    @Override
-    public Phone getPhone() {
-        return phone;
-    }
+	private final UniqueTagList tags;
 
-    @Override
-    public Email getEmail() {
-        return email;
-    }
+	/**
+	 * Assumption: Every field must be present and not null.
+	 */
+	public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags) {
+		this.name = name;
+		this.phone = phone;
+		this.email = email;
+		this.address = address;
+		this.tags = new UniqueTagList(tags); // protect internal tags from
+												// changes in the arg list
 
-    @Override
-    public Address getAddress() {
-        return address;
-    }
+		this.sequenceNumber = nextSequenceNumber;
+		nextSequenceNumber++;
+	}
 
-    @Override
-    public UniqueTagList getTags() {
-        return new UniqueTagList(tags);
-    }
+	public void setSequenceNumber(int sequenceNumber) {
+		this.sequenceNumber = sequenceNumber;
+	}
 
-    /**
-     * Replaces this person's tags with the tags in the argument tag list.
-     */
-    public void setTags(UniqueTagList replacement) {
-        tags.setTags(replacement);
-    }
+	/**
+	 * Copy constructor.
+	 */
+	public Person(ReadOnlyPerson source) {
+		this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags());
+	}
 
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ReadOnlyPerson // instanceof handles nulls
-                && this.isSameStateAs((ReadOnlyPerson) other));
-    }
+	public static int getNextSequenceNumber() {
+		return nextSequenceNumber;
+	}
 
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
-    }
+	public int getSequenceNumber() {
+		return sequenceNumber;
+	}
 
-    @Override
-    public String toString() {
-        return getAsTextShowAll();
-    }
+	@Override
+	public Name getName() {
+		return name;
+	}
+
+	@Override
+	public Phone getPhone() {
+		return phone;
+	}
+
+	@Override
+	public Email getEmail() {
+		return email;
+	}
+
+	@Override
+	public Address getAddress() {
+		return address;
+	}
+
+	@Override
+	public UniqueTagList getTags() {
+		return new UniqueTagList(tags);
+	}
+
+	/**
+	 * Replaces this person's tags with the tags in the argument tag list.
+	 */
+	public void setTags(UniqueTagList replacement) {
+		tags.setTags(replacement);
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		return other == this // short circuit if same object
+				|| (other instanceof ReadOnlyPerson // instanceof handles nulls
+						&& this.isSameStateAs((ReadOnlyPerson) other));
+	}
+
+	@Override
+	public int hashCode() {
+		// use this method for custom fields hashing instead of implementing
+		// your own
+		return Objects.hash(name, phone, email, address, tags);
+	}
+
+	@Override
+	public String toString() {
+		return getAsTextShowAll();
+	}
 
 }
