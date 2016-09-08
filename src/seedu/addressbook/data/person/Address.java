@@ -1,6 +1,9 @@
 package seedu.addressbook.data.person;
 
+import javax.swing.text.html.HTML.Tag;
+
 import seedu.addressbook.data.exception.IllegalValueException;
+import seedu.addressbook.data.tag.Tagging;
 
 /**
  * Represents a Person's address in the address book.
@@ -68,23 +71,9 @@ public class Address {
     public boolean isPrivate() {
         return isPrivate;
     }
+    
+   
+    
+    
 }
 
-/*class Block{
-	private String blockName;
-	
-	public Block(){
-		getBlockName = "";
-	}
-}
-class Street{
-	private String streetName; 
-}
-class Postal{
-	private int postalNum;
-	
-}
-class Unit{
-	private String unitName;
-	
-}*/

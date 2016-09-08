@@ -5,7 +5,9 @@ import seedu.addressbook.data.person.UniquePersonList.*;
 import seedu.addressbook.data.tag.UniqueTagList;
 import seedu.addressbook.data.tag.UniqueTagList.*;
 import seedu.addressbook.data.tag.Tag;
+import seedu.addressbook.data.tag.Tagging;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -22,6 +24,7 @@ public class AddressBook {
 
     private final UniquePersonList allPersons;
     private final UniqueTagList allTags; // can contain tags not attached to any person
+    private ArrayList<Tagging> taggingHistory = new ArrayList<Tagging>();
 
     /**
      * Creates an empty address book.
@@ -143,4 +146,24 @@ public class AddressBook {
     public UniqueTagList getAllTags() {
         return new UniqueTagList(allTags);
     }
+    
+    public void addTagging(Person person, Tag tag){
+    	Tagging newTagging = new Tagging(true, person, tag);
+    	taggingHistory.add(newTagging); 
+    }
+    
+    public void removeTagging(Person person, Tag tag){
+    	Tagging newTagging = new Tagging(false, person, tag);
+    	taggingHistory.add(newTagging);
+    }
+    
+    
+    
+    public void printTaggingList(ArrayList<Tagging> taggingHistory){
+    	for(int i =0; i <taggingHistory.size(); i++){
+    		System.out.println(taggingHistory.get(i).toString());
+    	}
+    	
+    }
+    
 }
